@@ -4,12 +4,20 @@ contains the Pascal's Triangle function
 """
 
 
-def generate_pascal_triangle(n):
+def pascal_triangle(n):
+    """ returns a list of lists of integers representing
+        the Pascal’s triangle of n
+    """
     triangle = []
-    for i in range(n):
-        row = [1] * (i + 1)
-        if i > 1:
-            for j in range(1, i):
-                row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
+    for i in range(1, n+1):
+        row = []
+        for j in range(i):
+            if j == 0 or j == i-1:
+                n = 1
+                row.append(n)
+            else:
+                n = triangle[i-2][j-1] + triangle[i-2][j]
+                row.append(n)
         triangle.append(row)
+
     return triangle
